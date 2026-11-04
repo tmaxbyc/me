@@ -1,0 +1,202 @@
+from pathlib import Path
+
+html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bintang Pratama Subagiyo — CV</title>
+  <style>
+    :root {
+      --ink: #20242a;
+      --muted: #626b75;
+      --rule: #d9dee5;
+      --accent: #174b72;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 36px 18px;
+      background: #f2f4f6;
+      color: var(--ink);
+      font-family: Helvetica, Arial, sans-serif;
+      line-height: 1.45;
+    }
+    .cv {
+      width: min(850px, 100%);
+      margin: 0 auto;
+      padding: 48px 58px;
+      background: #fff;
+      box-shadow: 0 5px 24px rgba(20, 35, 50, .08);
+    }
+    header {
+      padding-bottom: 22px;
+      border-bottom: 2px solid var(--accent);
+      margin-bottom: 25px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 29px;
+      letter-spacing: .6px;
+      line-height: 1.15;
+    }
+    .contact {
+      color: var(--muted);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+    .contact a { color: inherit; text-decoration: none; }
+    section { margin: 0 0 22px; }
+    h2 {
+      margin: 0 0 12px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    p { margin: 0; font-size: 13.5px; }
+    .entry { margin: 0 0 13px; }
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+    .date, .location {
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 400;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .subline {
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 1px;
+    }
+    .detail {
+      margin-top: 3px;
+      font-size: 12.5px;
+    }
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 18px;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 0; background: #fff; }
+      .cv { padding: 30px 22px; box-shadow: none; }
+      h1 { font-size: 25px; }
+      .entry-head { display: block; }
+      .date, .location { display: block; text-align: left; white-space: normal; }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media print {
+      body { padding: 0; background: #fff; }
+      .cv { width: 100%; padding: 18mm 17mm; box-shadow: none; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <main class="cv">
+    <header>
+      <h1>BINTANG PRATAMA SUBAGIYO</h1>
+      <div class="contact">
+        <a href="https://pratama.nicepage.io">pratama.nicepage.io</a>
+        &nbsp;|&nbsp;
+        <a href="mailto:bpraratama@gmail.com">bpraratama@gmail.com</a>
+        &nbsp;|&nbsp;
+        <a href="https://linkedin.com/in/praratama">linkedin.com/in/praratama</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>Majoring as an undergraduate degree in Cartography and Remote Sensing at Universitas Gadjah Mada with strong interest in social studies and technology, mostly proficient in public affairs, copywriting, and digital design.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-head"><span>Universitas Gadjah Mada</span><span class="location">Yogyakarta, Indonesia</span></div>
+        <div class="subline">Faculty of Geography</div>
+        <div class="entry-head"><span class="subline">Bachelor of Science in Cartography and Remote Sensing Study</span><span class="date">2025 – Present</span></div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>SMAN 1 Jetis Bantul</span><span class="location">Yogyakarta, Indonesia</span></div>
+        <div class="subline">Mathematics and Natural Science Major</div>
+        <div class="detail">Communities: School Librarian and Anti-Drug Abuse</div>
+        <div class="entry-head"><span class="detail">Final Grade: 90.56/100 (3.62/4.00)</span><span class="date">2022 – 2025</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="entry">
+        <div class="entry-head"><span>Medical Staff</span><span class="date">Aug 2026 – Present</span></div>
+        <div class="subline">Pekan Olahraga &amp; Seni Fakultas Geografi (PORSEGE) UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Medical Staff</span><span class="date">Jul 2025 – Present</span></div>
+        <div class="subline">Geography Night Festival (GNF) UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Logisctics Staff</span><span class="date">Jun 2026 – Present</span></div>
+        <div class="subline">Tech Innovation Paper LPKTA &amp; CT Fakultas Teknik UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Dept. of Entrepreneurship &amp; Logistics (Kewirausahaan dan Logistik) Staff</span><span class="date">Mar 2026 – Present</span></div>
+        <div class="subline">Himpunan Mahasiswa Sains Informasi Geografi (HMSaIG) UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Human Resources (Pengembangan Sumber Daya Manusia) Staff</span><span class="date">Dec 2025 – Present</span></div>
+        <div class="subline">Geography Study Club (GSC) UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Registration and Public Relations Staff</span><span class="date">Dec 2025 – Mar 2026</span></div>
+        <div class="subline">UGM ASEAN Case Competition 2026</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>Microsoft Office</div>
+        <div>Leadership</div>
+        <div>Teamwork</div>
+        <div>Canva and Photography</div>
+        <div>Project Management</div>
+        <div>Problem Solving</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Volunteering</h2>
+      <div class="entry">
+        <div class="entry-head"><span>Ticketing Staff</span><span class="date">Dec 2025</span></div>
+        <div class="subline">Gadjah Mada Super Cup Concert by IKAMMA FEB UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Public Relations Staff</span><span class="date">Dec 2025</span></div>
+        <div class="subline">Seminar Literacy Departemen Teknik Mesin dan Industri Fakultas Teknik UGM</div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span>Medical Staff (Voluntary)</span><span class="date">Oct 2025</span></div>
+        <div class="subline">Representation of Fakultas Geografi at PORSENIGAMA UGM</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+path = Path("/mnt/data/bintang_pratama_cv.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created: {path}")
